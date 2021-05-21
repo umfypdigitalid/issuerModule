@@ -33,10 +33,10 @@ body {
     height: 80%;
     width: auto;
     margin-top: 10px;
+  
     }
   #navbar__logo {
-    position: absolute;
-    left: 220px;
+    position: sticky;
     top:1.5rem;
     background: #FFEFBA;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
@@ -48,6 +48,7 @@ body {
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
     display: flex;
+
     align-items: center;
     cursor: pointer;
     text-decoration: none;
@@ -155,12 +156,10 @@ body {
       transition: all 0.5s ease;
       z-index: 99;
       height: 60vh;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
   
-    #navbar__logo {
-      padding-left: 25px;
-    }
+
   
     .navbar__toggle .bar {
       width: 25px;
@@ -191,8 +190,8 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 80%;
-      height: 80px;
+      width: 50%;
+      height: 50px;
       margin: 0;
     }
   
@@ -229,11 +228,13 @@ body {
     background: #1c92d2;  
   background: -webkit-linear-gradient(to top, #f2fcfe, #1c92d2); 
   background: linear-gradient(to top, #f2fcfe, #1c92d2); 
-
     padding: 200px 0;
+    position: relative;
   }
 
+
   .hero__container{
+    background-color: white;
     border-style: double;
     border-radius: 50px;
     border-width: 8px;
@@ -246,6 +247,19 @@ body {
     height: 90%;
     text-align: center;
     padding: 30px;
+    position: inherit;
+    background: linear-gradient(to bottom, #f2fcfe, #1c92d2); 
+  }
+
+  .hero::before{
+    content:'';
+    background-image: url("assets/login_background2.jpg");
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.75;
   }
 
   .hero__heading{
