@@ -1,12 +1,20 @@
 <?php
 
-$host ="localhost";
-$host = "root";
+/*$host ="localhost";
+$user = "root";
 $password = "";
-$db = "demo";
+$db = "digitalid";
 
-mysql_connect($host,$user,$password);
-mysql_select_db($db);
+mysql_connect($host,$user,$password,$db);
+mysql_select_db($db);*/
+
+$conn = new mysqli('localhost','root','','digitalid');
+if($conn->connect_error){
+    die('connection fail: '.$conn->connect_error);
+}else{
+    echo("working");
+}
+
 
 if(isset($_POST['username'])){
     $uname = $_POST['username'];

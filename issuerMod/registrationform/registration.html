@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+	<title>Registration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<!-- custom css -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<!-- bootstrap link -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<!-- google fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="m-body">
+
+	<div class="row">
+		<div class="col-md-5 m-left-col py-4 py-md-5">
+			<img class="m-img-logo" src="images/registration.jpg" alt="Registration"> <br>
+			<img class="m-img-cover" src="images/cover-img2.png" alt="Registration">
+		</div>
+
+		<div class="col-md-7 m-right-col pt-3 px-5 pb-5 p-md-5 registration-container">
+			<div class="m-registration-container">
+				<h3 class="m-txt-head py-3 py-md-4">Admin registration panel</h3>
+				<form class="m-form" action="register.php" method="POST">
+					<div class="row">
+						<!--username-->
+						<div class="form-group col-md-6 mb-4">
+							<input type="text" class="m-input m-input-blue" id="username" name = "username"
+								placeholder="Username">
+							<small class="m-error">*Please fill out this field.</small>
+						</div>
+
+						<!--full name-->
+						<div class="form-group col-md-6 mb-4">
+							<input type="text" class="m-input m-input-orange" id="name" name = "fullname" placeholder="Full Name">
+							<small class="m-error">*Please fill out this field.</small>
+						</div>
+					</div>
+
+					<div class="row">
+						<!--password-->
+						<div class="form-group col-md-6 mb-4">
+							<input type="text" class="m-input m-input-blue" id="phone" placeholder="Password" name = " password">
+							<small class="m-error">*Please fill out this field.</small>
+						</div>
+
+						<!--Select department-->
+						<div class="form-group col-md-6 mb-4">
+							<div class="m-input m-input-orange m-div-select">
+								<select class="m-select" id="department" name="department" >
+									<option value="" disabled selected>Select department</option>
+									<option value="1">Human Capital Division</option>
+									<option value="2">Identity Service Provider</option>
+									<option value="3">Licensing and assignment division</option>
+									<option value="4">Network Security Division</option>
+									<option value="5">Finance Division</option>
+									<option value="6">Industry research and data analysis</option>
+								</select>
+								<img src="images/down-arrow.png" width="12" height="12" alt="">
+							</div>
+							<small class="m-error">*Please fill out this field.</small>
+						</div>
+
+						<div class="row">
+							<!--Email-->
+							<div class="form-group col-md-6 mb-4">
+								<input type="text" class="m-input m-input-blue" id="Email" placeholder="Email" name = "email">
+								<small class="m-error">*Please fill out this field.</small>
+							</div>
+
+							<!--phone num-->
+							<div class="form-group col-md-6 mb-4">
+								<input type="text" class="m-input m-input-orange" id="Address" name = "phonenum"
+									placeholder="Phone Number">
+								<small class="m-error">*Please fill out this field.</small>
+							</div>
+						</div>
+
+
+
+						<div class="row">
+							<div class="col-md-6 d-flex justify-content-between">
+								<button type="submit" class="btn btn-primary m-button register-btn mt-3 m-2 w-100"
+									style="background-color:#0060A4; padding-top:12px; padding-bottom:12px; ">Register
+									Now</button>
+								<button type="submit" class="btn m-button mt-3 m-2 w-100"
+									style="color:#878787;background-color:#E9E9E9; border:none; padding-top:12px; padding-bottom:12px; ">Cancel</button>
+							</div>
+						</div>
+						<br>
+						<br>
+						<br>
+						<p align="center" style="font-size: 12px;bottom:0; width: 100%;">Any Problem? Read FAQ or Email
+							<a style="color: #0060A4" href="mailto:fypdigitalid@gmail.com">support@externalcompany</a><a
+								style="color: #0060A4" </p>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
