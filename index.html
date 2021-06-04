@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DigitalID website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!--Navbar section-->
+  <nav class="navbar">
+    <div class="navbar__container">
+      <img src="assets/gov_logo.png" class = "govLogo" alt = "Gov logo">
+      <a href="#home" id="navbar__logo">OneDigitalID</a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span> <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <a href="#home" class="navbar__links" id="home-page">Home</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#about" class="navbar__links" id="about-page">About</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#services" class="navbar__links" id="services-page">Services</a>
+        </li>
+        <li class="navbar__btn">
+          <a href="login2.html" class="button" id="login">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--hero section-->
+  <div class="hero" id="home">
+    <div class = "hero__container">
+      <h1 class="hero__heading">1DigitalID <span><br/> Prove yourselves in cyber space</span> </h1>
+      <p class="hero__description">Easy, convenient, awesome</p>
+      <button class="main__btn"><a href="#">Getting started</a> </button>
+    </div>
+  </div>
+  <!-- About Section -->
+  <div class="main" id="about">
+    <div class="main__container">
+      <div class="main__img--container">
+        <div class="main__img--card"><img src = "assets/about_digitalID.jpg"></div>
+      </div>
+      <div class="main__content">
+        <h1>What do we do?</h1>
+        <h2>Modernizing digital identity management for organizations and individuals.</h2>
+        <p>Leveraging the power of blockchain, the system makes digital ID even more secure and less open to fraud!</p>
+        <button class="main__btn"><a href="#">Contact Us</a></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <div class="services" id="services">
+    <h1>Our Services</h1>
+    <div class="services__wrapper">
+      <div class="services__card">
+        <h2>Register Now</h2>
+        <p>Get your digital ID</p>
+        <div class="services__btn"><button>Get Started</button></div>
+      </div>
+      <div class="services__card">
+        <h2>View status</h2>
+        <p>Check your registration status</p>
+        <div class="services__btn"><button>Get Started</button></a></div>
+      </div>
+      <div class="services__card">
+        <h2>Report</h2>
+        <p>Missing/Lost digital ID</p>
+        <div class="services__btn"><a href ="users/UI_missing.php"><button>Get Started</button></a></div>
+      </div>
+      <div class="services__card">
+        <h2>Contact us</h2>
+        <p>Need</p>
+        <div class="services__btn"><button>Get Started</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="footer__container">
+    <div class="footer__links">
+      <div class="footer__link--wrapper">
+        <div class="footer__link--items">
+          <h2>About Us</h2>
+          <a href="/sign__up">How it works</a> <a href="/">Testimonials</a>
+          <a href="/">Careers</a>
+        </div>
+        <div class="footer__link--items">
+          <h2>Contact Us</h2>
+          <a href="/">Contact</a> <a href="/">Support</a>
+          <a href="/">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer__link--wrapper">
+        <div class="footer__link--items">
+          <h2>Social Media</h2>
+          <a href="/">Instagram</a> <a href="/">Facebook</a>
+          <a href="/">Youtube</a> <a href="/">Twitter</a>
+        </div>
+      </div>
+    </div>
+    <section class="social__media">
+      <div class="social__media--wrap">
+        <div class="footer__logo">
+          <a href="/" id="footer__logo">OneDigitalID</a>
+        </div>
+        <p class="website__rights">© OneDigitalID 2021. All rights reserved</p>
+      </div>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
