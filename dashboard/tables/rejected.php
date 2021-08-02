@@ -10,7 +10,7 @@ if(mysqli_connect_error()){
     die('Connect Error('.mysqli_connect_errno().')'.mysqli_connect_error());
     $ok = false;
 }else{
-    $sql = "select * from userapplication where applicationstatus ='Rejected' ";
+    $sql = "select * from userapplication where applicationstatus ='Unverified' ";
 
     $result = mysqli_query($conn, $sql);
 

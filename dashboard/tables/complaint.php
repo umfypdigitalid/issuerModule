@@ -8,7 +8,7 @@ $date = date("Y-m-d");
 
 if (mysqli_connect_error()) {
     die('Connect Error(' . mysqli_connect_errno() . ')' . mysqli_connect_error());
-    $ok = false;
+ 
 } else {
     $sql2 = "update feedback r 
     inner join userapplication u on r.email=u.email

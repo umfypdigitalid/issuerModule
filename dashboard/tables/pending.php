@@ -10,7 +10,7 @@ if(mysqli_connect_error()){
     die('Connect Error('.mysqli_connect_errno().')'.mysqli_connect_error());
     $ok = false;
 }else{
-    $sql = "select * from userapplication where applicationstatus ='Pending' ";
+    $sql = "select * from userapplication where applicationstatus ='Verifying' ";
 
     $result = mysqli_query($conn, $sql);
    // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  

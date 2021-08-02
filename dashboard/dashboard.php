@@ -241,7 +241,7 @@
                                     die('Connect Error('.mysqli_connect_errno().')'.mysqli_connect_error());
                                     $ok = false;
                                 }else{
-                                    $sql = "SELECT COUNT(userID) as total from userapplication where applicationstatus='Pending'";
+                                    $sql = "SELECT COUNT(userID) as total from userapplication where applicationstatus='Verifying'";
                                 
                                     $result = mysqli_query($conn, $sql);  
                          
@@ -330,7 +330,7 @@
                                     die('Connect Error('.mysqli_connect_errno().')'.mysqli_connect_error());
                                     $ok = false;
                                 }else{
-                                    $sql = "SELECT COUNT(userID) as total from userapplication where applicationstatus='Rejected'";
+                                    $sql = "SELECT COUNT(userID) as total from userapplication where applicationstatus='Unverified'";
                                 
                                     $result = mysqli_query($conn, $sql);  
                          

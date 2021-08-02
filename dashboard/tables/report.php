@@ -29,7 +29,7 @@ if (mysqli_connect_error()) {
            //print_r($data);
         //echo $data['userID'];
         $userid = $data['userID'];
-        $sql3 = "update userapplication set isDeleted=true, applicationstatus='Rejected',expiredby='$date ' where userID='$userid'";
+        $sql3 = "update userapplication set isDeleted=true, applicationstatus='Unverified',expiredby='$date ' where userID='$userid'";
         $result3 = mysqli_query($conn, $sql3);
         if($result3==true){
             echo "Revoked successfully";

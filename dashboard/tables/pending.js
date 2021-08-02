@@ -49,6 +49,7 @@ ajax.onreadystatechange = function () {
           data[i].image +
           " width = '200' height = '100'" +
           "</td>" +
+          "<td>[Selfie with ic]</td>"+
           "<td>" +
           data[i].applicationstatus +
           "</td>" +
@@ -102,7 +103,7 @@ ajax.onreadystatechange = function () {
           type: "POST",
           url: "update.php",
           dataType: "text",
-          data: { ic: JSON.stringify($reject), status: "Rejected"},
+          data: { ic: JSON.stringify($reject), status: "Unverified"},
           success: function (data, status, xhr) {
             alert("response was " + data);
             location.reload();

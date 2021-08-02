@@ -229,6 +229,7 @@
                                             <th>Address</th>
                                             <th>Email</th>
                                             <th>Image</th>
+                                            <th>Selfie</th>
                                             <th>Status</th>
 
 
