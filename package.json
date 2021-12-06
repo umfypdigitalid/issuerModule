@@ -1,12 +1,36 @@
 {
-  "name": "issuerMod",
+  "name": "issuermod",
   "version": "1.0.0",
   "description": "The role of verifying users' application.",
-  "main": "app.js",
+  "main": "truffle-config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "bootstrap": "4.1.3",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^2.0.2",
+    "lite-server": "^2.3.0",
+    "nodemon": "^1.17.3",
+    "truffle": "^5.0.2",
+    "truffle-contract": "^3.0.6"
+  },
+  "dependencies": {
+    "web3": "^1.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanSweeYin/issuerMod.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TanSweeYin/issuerMod/issues"
+  },
+  "homepage": "https://github.com/TanSweeYin/issuerMod#readme"
 }

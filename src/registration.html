@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration</title>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    body {
+      padding: 50px;
+    }
+
+    img {
+      width: 350px;
+    }
+
+    .row {
+      border: 2px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div id="assets1" class="row">
+      <div class="col-sm">
+        <img src="assets/1.jpg" alt="ic reader">
+      </div>
+      <div class="col-sm" style="text-align:center;">Insert card...</div>
+      <div class="col-sm"><button id="buttonInsert">Insert card</button></div>
+    </div>
+
+    <div  id="assets2" class="row">
+      <div class="col-sm">
+        <img src="assets/2.jpg" alt="ic reader">
+      </div>
+      <div class="col-sm" style="text-align:center;">Place your thumbprint...</div>
+      <div class="col-sm"><button id="buttonThumb">Place thumb</button></div>
+    </div>
+
+    <div  id="assets3" class="row">
+      <div class="col-sm">
+        <img src="assets/3.jpg" alt="ic reader">
+      </div>
+      <div class="col-sm" style="text-align:center;">Retrieving data...</div>
+      <div class="col-sm"><button id="buttonFetch">Fetch data</button></div>
+    </div>
+
+    <div id="assets4" class="row">
+      <div class="col-sm">
+        <img src="assets/4.jpg" id="ic" alt="ic reader">
+      </div>
+      <div class="col-sm" style="text-align:center;"></div>
+      <div class="col-sm"></div>
+    </div>
+
+    <div id="assets5" class="row" >
+      <div class="col-sm">
+      </div>
+      <div class="col-sm" style="text-align:center;"></div>
+      <div class="col-sm">
+        <table>
+        <tr>
+          <td>Name : </td>
+          <td>Mohamad Amirul Ghazali</td>
+        </tr>
+        <tr>
+          <td>IC : </td>
+          <td>940623-13-5182</td>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Address: </td>
+          <td>No 15 Jalan 38/278 Taman Desa Setapak 53300 Kuala Lumpur</td>
+        </tr>
+        
+      </table>
+     
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  $(document).ready(function () {
+    $("#assets1").show();
+    $("#assets2").hide();
+    $("#assets3").hide();
+    $("#assets4").hide();
+    $("#assets5").hide();
+  });
+
+  $(function(){
+    $("#buttonThumb").click(function () {
+      // $(".container .row:nth-child(4)").css("visibility","visible");
+      $("#assets2").hide();
+      $("#assets3").show();
+    });
+  });
+
+  $(function(){
+    $("#buttonInsert").click(function () {
+      //$(".container .row:nth-child(2)").css("visibility","visible");
+      // $(".container .row:nth-child(3)").css("visibility","visible");
+      $("#assets4").fadeIn();
+      setTimeout(function(){
+        $("#assets1").hide();
+        $("#assets2").show();
+      }, 1500);
+      
+    });
+  });
+
+  $(function(){
+    $("#buttonFetch").click(function () {
+      $("#assets5").show();
+      window.open("http://localhost/issuerMod/dashboard/tables/table1_pending.php?username=mariajohnson21",'_blank').focus();
+    });
+  });
+
+ 
+
+</script>
+
+</html>

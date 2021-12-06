@@ -49,7 +49,7 @@ ajax.onreadystatechange = function () {
           data[i].image +
           " width = '200' height = '100'" +
           "</td>" +
-          "<td>[Selfie with ic]</td>"+
+        
           "<td>" +
           data[i].applicationstatus +
           "</td>" +
