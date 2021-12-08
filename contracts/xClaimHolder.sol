@@ -22,7 +22,7 @@ contract xClaimHolder is xKeyHolder, xERC735 {
         bytes memory _data,
         string memory _uri
     )
-        public override returns (bytes32 claimRequestId){
+        public override returns (bytes32 claimRequestId){ //_issuer replace with addNewClaimHolder contract
         bytes32 claimId = keccak256(abi.encodePacked(_issuer, _claimType));
 
         if (msg.sender != address(this)) {
@@ -102,6 +102,9 @@ contract xClaimHolder is xKeyHolder, xERC735 {
         returns(bytes32[] memory claimIds)
     {
         return claimsByType[_claimType];
+    }
+     function destroy(address payable addr)public{
+        selfdestruct(addr);
     }
 
 }
