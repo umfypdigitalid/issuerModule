@@ -12,181 +12,325 @@
   <!--Bootstrap css and js-->
   <!-- CSS only -->
   <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-<style>
-  .form{
-    padding: 30px;
-  }
-</style>
+  <style>
+    .form {
+      padding: 30px;
+    }
+
+    .container {
+      margin-left: 20px;
+
+    }
+  </style>
 
 </head>
+
 <body>
   <!--NAV BAR-->
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-        <a class="navbar-brand mb-0 h1" href="#">  <img src="../assets/gov_logo.png" width="40" height="30" class="d-inline-block align-text-top">    BLOCKCHAIN</a>
-      
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <a class="navbar-brand mb-0 h1" href="#"> <img src="../assets/gov_logo.png" width="40" height="30"
+          class="d-inline-block align-text-top"> BLOCKCHAIN</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false"> Address </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" id="address1" href="#"></a></li>
+              <li><a class="dropdown-item" id="address2" href="#"></a></li>
+              <li><a class="dropdown-item" id="address3" href="#"></a></li>
             </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Address </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" id = "address1" href="#"></a></li>
-                        <li><a class="dropdown-item" id = "address2" href="#"></a></li>
-                        <li><a class="dropdown-item" id = "address3" href="#"></a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>     
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
-<!--VALUE-->
+  <!--VALUE-->
 
-<form class = "form">
-  <div class="form-group">
-    <label for="userIC">NRIC</label>
-    <input type="text" class="form-control" id="userIC" aria-describedby="NRIC" placeholder="NRIC">
-    <small id="userIC" class="form-text text-muted">Insert user NRIC to be registered in blockchain.</small>
+  <form class="form">
+    <div class="form-group">
+      <label for="userIC">NRIC</label>
+      <input type="text" class="form-control" id="userIC" aria-describedby="NRIC" placeholder="NRIC">
+      <small id="userIC" class="form-text text-muted">Insert user NRIC to be registered in blockchain.</small>
+    </div>
+
+    <button id="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <!--Display data-->
+  <div class="container">
+    <div class="row text-start">
+      <div class="col">
+        <h6>Management Key Issuer:</h6>
+      </div>
+      <div class="col-10">
+        <small class="text-muted" id="imanagementkey"></small>
+      </div>
+    </div>
+    <div class="row text-left">
+      <div class="col">
+        <h6>Claim Key Issuer: </h6>
+      </div>
+      <div class="col-10">
+        <small class="text-muted" id="iclaimkey"></small>
+      </div>
+    </div>
+    <div class="row text-left">
+      <div class="col">
+        <h6>HashDataToSign:</h6>
+      </div>
+      <div class="col-10">
+        <small class="text-muted" id="hashDataToSign"></small>
+      </div>
+    </div>
+    <div class="row text-left">
+      <div class="col">
+        <h6>Signature:</h6>
+      </div>
+      <div class="col-10">
+        <small class="text-muted" id="signature"></small>
+      </div>
+    </div>
+    <div class="row text-left">
+      <div class="col">
+        <h6>New Contract Address: </h6>
+      </div>
+      <div class="col-10">
+        <small class="text-muted" id="newAddr"></small>
+      </div>
+    </div>
+    <div class="row text-left">
+      <div class="col">
+        <h6>Claim ID: </h6>
+      </div>
+      <div class="col-10">
+        <small class="text-muted" id="claimId"></small>
+      </div>
+    </div>
   </div>
 
-  <button id="submit"  class="btn btn-primary">Submit</button>
-</form>
-
-<!--Display data-->
-<div>
-  <p id = "hashDataToSign"></p>
-  <p id = "signature"></p>
-</div>
-
+</body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
-  <!--WEB3JS SCRIPT-->
-  <script type = "module">
+<!--WEB3JS SCRIPT-->
+<script type="module">
 
-    import {xClaimHolder} from '../src/abi/xClaimHolder.js';
-    import {xKeyHolder} from '../src/abi/xKeyHolder.js';
-    //import {xClaimHolderUser} from '../src/abi/xClaimHolderUser.js';
-    import {EthereumClaimsRegistry} from '../src/abi/EthereumClaimsRegistry.js';
-    var web3;
+  import { xClaimHolder } from '../src/abi/xClaimHolder.js';
+  import { xKeyHolder } from '../src/abi/xKeyHolder.js';
+  //import {xClaimHolderUser} from '../src/abi/xClaimHolderUser.js';
+  import { EthereumClaimsRegistry } from '../src/abi/EthereumClaimsRegistry.js';
+  var web3;
 
-    //KEY AND CLAIM LABELS
-    const KEY_PURPOSES = {
-      "MANAGEMENT" : 1,
-      "CLAIM" : 3,
-    };
-    const KEY_TYPES = {
-      "ECDSA" : 1
-    };
-    const CLAIM_SCHEMES = {
-      "ECDSA" : 1
-    };
-    const CLAIM_TYPES = {
-      "KYC" : 7
-    };
-
-    //CONNECTING GANACHE
-
-     if (typeof web3 !== 'undefined') {
-      web3 = new Web3(web3.currentProvider);
-    } else {
-      web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:9545"));
-    }
-
-
-    web3.eth.defaultAccount = web3.eth.accounts[0];
-
-
-    //ASYNCHRONOUS FUNCTION
-    async function initContractLogic() {
-      var currentAccounts = await web3.eth.getAccounts();
-      const addr1 = document.getElementById("address1").innerHTML = currentAccounts[0]
-      const addr2 = document.getElementById("address2").innerHTML = currentAccounts[1]
-      const addr3 = document.getElementById("address3").innerHTML = currentAccounts[2]
-
-      console.log("Issuer addr: "+ addr1);
-      console.log("Issuer management key(keccak of account[0])"+web3.utils.keccak256(currentAccounts[0]));    
-      console.log("Deploy issuer claim holder...");
-  
-      var issuerClaimHolderContract = new web3.eth.Contract( xClaimHolder.abi,xClaimHolder.address);
-      var issuerKeyHolderContract = new web3.eth.Contract(xKeyHolder.abi,xKeyHolder.address);
-      //var userClaimHolderContract = new web3.eth.Contract(xClaimHolderUser.abi,xClaimHolderUser.address);
-      var userClaimContract = new web3.eth.Contract(EthereumClaimsRegistry.abi, EthereumClaimsRegistry.address);
-
-      var issuerClaimKey = web3.utils.keccak256(currentAccounts[1]);
-      
-      console.log("Issuer Claim Key(keccak of account[1]): "+issuerClaimKey);
-      console.log("Adding a claim key to issuer's ClaimHolder...");
-      issuerClaimHolderContract.methods.addKey(
-        issuerClaimKey,
-        KEY_PURPOSES.CLAIM,
-        KEY_TYPES.ECDSA
-      ).send({
-          from: currentAccounts[0],
-          gas: 4612388,
-        }).on('transactionHash', function (hash) {
-          console.log('hash', hash);
-          //document.getElementById("txhash").innerHTML = hash;
-        }).on('confirmation', function (confirmationNumber, receipt) {
-          //updateHtmlData();
-          console.log(confirmationNumber);
-        }).catch(function (error) {
-          console.log(error, 'error');
-        });
-
-        console.log("Sign user's claim");
-
-        $("#submit").on('click', async function () {
-          event.preventDefault();
-
-          var userIC = document.getElementById("userIC").value;
-          console.log("UserIC: ",userIC);
-          var hexedData = web3.utils.asciiToHex(userIC);
-          var hashedDataToSign = web3.utils.soliditySha3(
-            userClaimHolderContract.options.address,
-            CLAIM_TYPES.KYC,
-            hexedData
-          );
-          //alert("HashedDataToSign: ",hashedDataToSign);
-          console.log("HashedDataToSign: ",hashedDataToSign);
-          document.getElementById("hashDataToSign").innerHTML = hashedDataToSign;
-          var signature = await web3.eth.sign(hashedDataToSign,addr2);
-          //alert("signature: ",signature);
-          console.log("signature: ",signature);
-          document.getElementById("signature").innerHTML = signature;
-
-          console.log("Adding IssuerID KYC Claim on User's ClaimHolder");
-          var addUserClaimABI = await userClaimHolderContract.methods.addClaim(
-          CLAIM_TYPES.KYC,
-          CLAIM_SCHEMES.ECDSA,
-          issuerClaimHolderContract.options.address,
-          signature,
-          hexedData,
-          
-        )
-          
-        });
-
-      
-
-
+  //KEY AND CLAIM LABELS
+  const KEY_PURPOSES = {
+    "MANAGEMENT": 1,
+    "CLAIM": 3,
+  };
+  const KEY_TYPES = {
+    "ECDSA": 1
+  };
+  const CLAIM_SCHEMES = {
+    "ECDSA": 1
+  };
+  const CLAIM_TYPES = {
+    "IC": 1,
+    "Name": 2,
+    "DOB": 3,
+    "Gender": 4,
+    "Address": 5,
     
-      }//initcontractlogic();
+  };
 
-    initContractLogic();
+  //CONNECTING GANACHE
+
+  if (typeof web3 !== 'undefined') {
+    web3 = new Web3(web3.currentProvider);
+  } else {
+    //web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:9545")); //original
+    web3 = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:9545'));//websocket for events
+  }
 
 
-  </script>
+  web3.eth.defaultAccount = web3.eth.accounts[0];
+
+
+  //ASYNCHRONOUS FUNCTION
+  async function initContractLogic() {
+    var currentAccounts = await web3.eth.getAccounts();
+    const addr1 = document.getElementById("address1").innerHTML = currentAccounts[0]
+    const addr2 = document.getElementById("address2").innerHTML = currentAccounts[1]
+    const addr3 = document.getElementById("address3").innerHTML = currentAccounts[2]
+
+    var issuerClaimHolderContract = new web3.eth.Contract(xClaimHolder.abi, xClaimHolder.address);
+    var issuerKeyHolderContract = new web3.eth.Contract(xKeyHolder.abi, xKeyHolder.address);
+    //var userClaimHolderContract = new web3.eth.Contract(xClaimHolderUser.abi,xClaimHolderUser.address);
+    var userClaimContract = new web3.eth.Contract(EthereumClaimsRegistry.abi, EthereumClaimsRegistry.address);
+
+    //=====ISSUER KEYS AND CLAIM HOLDER =======
+    console.log("Issuer addr: " + addr1);
+    console.log("Issuer management key(keccak of account[0])" + web3.utils.keccak256(currentAccounts[0]));
+    document.getElementById("imanagementkey").innerHTML = web3.utils.keccak256(currentAccounts[0]);
+
+    console.log("Deploy issuer claim holder...");
+    var issuerClaimKey = web3.utils.keccak256(currentAccounts[1]);
+
+    console.log("Issuer Claim Key(keccak of account[1]): " + issuerClaimKey);
+    console.log("Adding a claim key to issuer's ClaimHolder...");
+    document.getElementById("iclaimkey").innerHTML = issuerClaimKey;
+
+    /* //Added issuer claim key keccak of acc[1]===REMOVE FOR SAME ACCOUNT, ONLY RUN IF CLAIMKEY OF ISSUER NOT ADDED.
+    issuerClaimHolderContract.methods.addKey(
+      issuerClaimKey,
+      KEY_PURPOSES.CLAIM,
+      KEY_TYPES.ECDSA
+    ).send({
+      from: currentAccounts[0],
+      gas: 4612388,
+    }).on('transactionHash', function (hash) {
+      console.log('hash', hash);
+      //document.getElementById("txhash").innerHTML = hash;
+    }).on('confirmation', function (confirmationNumber, receipt) {
+      //updateHtmlData();
+      console.log(confirmationNumber);
+    }).catch(function (error) {
+      console.log(error, 'error');
+    });
+    */
+
+    //===========SIGN USER CLAIM==================
+    console.log("Sign user's claim");
+
+    $("#submit").on('click', async function () {
+      event.preventDefault();
+
+      var userIC = document.getElementById("userIC").value;
+      console.log("UserIC: ", userIC);
+      var hexedData = web3.utils.asciiToHex(userIC);
+      var hashedDataToSign = web3.utils.soliditySha3(
+        userClaimContract.options.address,
+        CLAIM_TYPES.IC,
+        hexedData
+      );
+      /* old
+       //alert("HashedDataToSign: ",hashedDataToSign);
+       console.log("HashedDataToSign: ",hashedDataToSign);
+       document.getElementById("hashDataToSign").innerHTML = hashedDataToSign;
+       var signature = await web3.eth.sign(hashedDataToSign,addr2);
+       //alert("signature: ",signature);
+       console.log("Signature: ",signature);
+       document.getElementById("signature").innerHTML = signature;
+
+       console.log("Adding IssuerID KYC Claim on User's ClaimHolder");
+       var addUserClaimABI = await userClaimHolderContract.methods.addClaim(
+       CLAIM_TYPES.IC,
+       CLAIM_SCHEMES.ECDSA,
+       issuerClaimHolderContract.options.address,
+       signature,
+       hexedData,          
+     ) 
+       */
+      //deploying new instance of contract addCLaimHolder.
+      var signature = await web3.eth.sign(hashedDataToSign, addr2);
+      console.log("Signature: ", signature);
+      document.getElementById("signature").innerHTML = signature;
+      console.log("HashedDataToSign: ", hashedDataToSign);
+      document.getElementById("hashDataToSign").innerHTML = hashedDataToSign;
+
+      userClaimContract.methods.addClaimHolder().send({
+        from: currentAccounts[0],
+        gas: 4612388,
+      }).on('transactionHash', function (hash) {
+        console.log('hash', hash);
+        //var receipt = web3.eth.getTransactionReceipt(hash).then(console.log);
+        //document.getElementById("txhash").innerHTML = hash;
+      }).on('confirmation', function (confirmationNumber, receipt) {
+        //updateHtmlData();
+        console.log(confirmationNumber);
+      }).catch(function (error) {
+        console.log(error, 'error');
+      });
+
+      var holder = "";
+      userClaimContract.events.ClaimHolderAdded(function (error, event) {
+        if (error) {
+          console.log('Event error: ', error);
+          document.getElementById("newAddr").innerHTML = error;
+        } else {
+          document.getElementById("newAddr").innerHTML = event.returnValues[0];
+          holder = event.returnValues[0];
+          console.log('Store new address:', holder)
+          console.log(event);
+
+          //signning user claim
+          userClaimContract.methods.addClaim
+            (
+              holder,
+              CLAIM_TYPES.IC,
+              CLAIM_SCHEMES.ECDSA,
+              holder,
+              signature,
+              hexedData,
+              "http://localhost")
+            .call(function (error, result) {
+              if (error) {
+                console.log(error, 'error');
+              } else {
+                console.log(result, 'result claim id');
+                document.getElementById("claimId").innerHTML = result;
+              }
+            });
+
+          userClaimContract.methods.addClaim(
+            holder,
+            CLAIM_TYPES.IC,
+            CLAIM_SCHEMES.ECDSA,
+            holder,
+            signature,
+            hexedData,
+            "http://localhost"
+          ).send({
+            from: currentAccounts[1],
+            gas: 4612388,
+          }).on('transactionHash', function (hash) {
+            console.log('Add claim txhash:', hash);
+            //var receipt = web3.eth.getTransactionReceipt(hash).then(console.log);
+            //document.getElementById("txhash").innerHTML = hash;
+          }).on('confirmation', function (confirmationNumber, receipt) {
+            console.log('Add claim cfm: ', confirmationNumber);
+          }).catch(function (error) {
+            console.log(error, 'error');
+          });
+
+
+        }
+      });
+
+
+
+
+    });
+  }//initcontractlogic();
+
+  initContractLogic();
+</script>
 </body>
 
 </html>

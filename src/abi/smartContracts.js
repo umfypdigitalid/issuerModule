@@ -1,43 +1,42 @@
-const smartContracts = {
-
- "abi" : [
+const smartcontracts = {
+  "abi": [
     {
-      "constant": false,
+      "anonymous": false,
       "inputs": [
         {
+          "indexed": false,
+          "internalType": "string",
           "name": "_fName",
           "type": "string"
         },
         {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_age",
+          "type": "uint256"
+        }
+      ],
+      "name": "getInstructor",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_fName",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
           "name": "_age",
           "type": "uint256"
         }
       ],
       "name": "setInstructor",
       "outputs": [],
-      "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "getInstructor",
-      "outputs": [
-        {
-          "name": "",
-          "type": "string"
-        },
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      }
-    ] 
+    }
+  ], address:'0x4940233DFdcC036b6209932A9aE767d55a3BaD0d'
 }
-
-export {smartContracts};
+export {smartcontracts};

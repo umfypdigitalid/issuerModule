@@ -65,32 +65,14 @@
       </div>
       <div class="col-sm" style="text-align:center;"></div>
       <div class="col-sm">
-        <table>
-        <tr>
-          <td>Name : </td>
-          <td>Mohamad Amirul Ghazali</td>
-        </tr>
-        <tr>
-          <td>IC : </td>
-          <td>940623-13-5182</td>
-        </tr>
-        <tr>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Address: </td>
-          <td>No 15 Jalan 38/278 Taman Desa Setapak 53300 Kuala Lumpur</td>
-        </tr>
-        
-      </table>
-     
+        <h6 id = 'icDetails'></h6>
       </div>
     </div>
   </div>
 
 </body>
 
-<script>
+<script >
   $(document).ready(function () {
     $("#assets1").show();
     $("#assets2").hide();
@@ -115,7 +97,7 @@
       setTimeout(function(){
         $("#assets1").hide();
         $("#assets2").show();
-      }, 1500);
+      }, 1000);
       
     });
   });
@@ -124,10 +106,17 @@
     $("#buttonFetch").click(function () {
       $("#assets5").show();
       window.open("http://localhost/issuerMod/dashboard/tables/table1_pending.php?username=mariajohnson21",'_blank').focus();
+    
+      $.get('../src/assets/icDetails.txt',function(data){
+        //data.replace('n','<br>')
+        document.getElementById("icDetails").innerHTML = data.replace(/\n/g, "<br />");       
+      },'text');      
+
     });
   });
 
  
+
 
 </script>
 
