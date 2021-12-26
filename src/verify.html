@@ -17,18 +17,7 @@
     crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
-  <style>
-    .form {
-      padding: 30px;
-    }
-
-    .container {
-      margin-left: 20px;
-
-    }
-  </style>
-
+  <link rel="stylesheet" href="css/verify.css">
 </head>
 
 <body>
@@ -61,74 +50,216 @@
   </nav>
 
   <!--VALUE-->
+  <div class="content">
+    <h3>Verify Identity</h3>
+    <form class="form">
+      <div class="form-group">
+        <label for="userIC">NRIC</label>
+        <input type="text" class="form-control" id="userIC" aria-describedby="NRIC" placeholder="NRIC">
+        <small id="userIC" class="form-text text-muted">Insert user NRIC to be registered in blockchain.</small>
+      </div>
 
-  <form class="form">
-    <div class="form-group">
-      <label for="userIC">NRIC</label>
-      <input type="text" class="form-control" id="userIC" aria-describedby="NRIC" placeholder="NRIC">
-      <small id="userIC" class="form-text text-muted">Insert user NRIC to be registered in blockchain.</small>
-    </div>
+      <button id="submit" class="btn btn-primary">Submit</button>
+    </form>
 
-    <button id="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <!--Display data-->
+    <div class="container">
+      <div class="row text-start">
+        <div class="col-md-3">
+          <h6>Management Key Issuer:</h6>
+        </div>
+        <div class="col-md-auto">
+          <small class="text-muted" id="imanagementkey"></small>
+        </div>
+      </div>
+      <div class="row text-left">
+        <div class="col-md-3">
+          <h6>Claim Key Issuer: </h6>
+        </div>
+        <div class="col-md-auto">
+          <small class="text-muted" id="iclaimkey"></small>
+        </div>
+      </div>
+      <div class="row text-left">
+        <div class="col-md-3">
+          <h6>HashDataToSign:</h6>
+        </div>
+        <div class="col-md-auto">
+          <small class="text-muted" id="hashDataToSign"></small>
+        </div>
+      </div>
+      <div class="row text-left">
+        <div class="col-md-3">
+          <h6>Signature:</h6>
+        </div>
+        <div class="col-md-auto">
+          <small class="text-muted" id="signature"></small>
+        </div>
+      </div>
+      <div class="row text-left">
+        <div class="col-md-3">
+          <h6>New Contract Address: </h6>
+        </div>
+        <div class="col-md-auto">
+          <small class="text-muted" id="newAddr"></small>
+        </div>
+      </div>
+      <div class="row text-left">
+        <div class="col-md-3">
+          <h6>Claim ID: </h6>
+        </div>
+        <div class="col-md-auto">
+          <small class="text-muted" id="claimId-nric"></small>
+        </div>
+      </div>
+    </div>
+    <!--Display QR code-->
+    <div class="container" id="qrDiv">
+      <button id="qr-data" class="btn btn-primary" onclick="generateQR()">Generate QR code</button>
+      <br>
+      <br>
+      <div class="row text-start">
+        <div class="col">
+          <h6> Contract Address and NRIC claim:</h6>
+        </div>
 
-  <!--Display data-->
-  <div class="container">
-    <div class="row text-start">
-      <div class="col">
-        <h6>Management Key Issuer:</h6>
       </div>
-      <div class="col-10">
-        <small class="text-muted" id="imanagementkey"></small>
+      <div class="row text-start">
+        <div class="col">
+          <p id="qrcode-address"></p>
+        </div>
+        <div class="col">
+          <p id="qrcode-claimId-nric"></p>
+        </div>
+      </div>
+
+
+      <!--Add other claims to same contract address-->
+      <div id="otherClaims--hidden">
+        <hr class="divider">
+        <h3>Verify and sign other claims</h3>
+        <form>
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div id="claimId-name"></div>
+
+
+          </div>
+          <div class="form-group row">
+            <label for="dob" class="col-sm-2 col-form-label">Date of birth</label>
+            <div class="col-sm-8">
+              <input type="date" class="form-control" id="dob" placeholder="Date of birth">
+            </div>
+            <div id="claimId-dob"></div>
+          </div>
+          <div class="form-group row">
+            <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="gender" placeholder="Male/Female">
+            </div>
+            <div id="claimId-gender"></div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="residence-address" class="col-sm-2 col-form-label">Residence Address</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="residence-address" placeholder="Residence Address">
+            </div>
+            <div id="claimId-residence"></div>
+            <div id="qrcode-claimId-otherClaims"></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm">
+              <button id="btn_generateQR_otherClaims" onclick="generateQR_otherClaims()"
+                class="btn btn-primary">Generate QR</button>
+            </div>
+            <div class="col-sm">
+              <button id="btn_sendOtherClaims" class="btn btn-primary">Sign address</button>
+            </div>
+          </div>
+
+        </form>
       </div>
     </div>
-    <div class="row text-left">
-      <div class="col">
-        <h6>Claim Key Issuer: </h6>
-      </div>
-      <div class="col-10">
-        <small class="text-muted" id="iclaimkey"></small>
-      </div>
-    </div>
-    <div class="row text-left">
-      <div class="col">
-        <h6>HashDataToSign:</h6>
-      </div>
-      <div class="col-10">
-        <small class="text-muted" id="hashDataToSign"></small>
-      </div>
-    </div>
-    <div class="row text-left">
-      <div class="col">
-        <h6>Signature:</h6>
-      </div>
-      <div class="col-10">
-        <small class="text-muted" id="signature"></small>
-      </div>
-    </div>
-    <div class="row text-left">
-      <div class="col">
-        <h6>New Contract Address: </h6>
-      </div>
-      <div class="col-10">
-        <small class="text-muted" id="newAddr"></small>
-      </div>
-    </div>
-    <div class="row text-left">
-      <div class="col">
-        <h6>Claim ID: </h6>
-      </div>
-      <div class="col-10">
-        <small class="text-muted" id="claimId"></small>
-      </div>
+    <!--REVOKE USERS-->
+    <div class="container">
+      <hr class="divider">
+      <h3>Revoke verifiable credentials</h3>
+      <form class="form">
+        <div class="form-group">
+          <label for="revoke">Contract address to be revoke:</label>
+          <input type="text" class="form-control" id="revoke" aria-describedby="revoke"
+            placeholder="Contract address to be revoked">
+          <small id="contract address" class="form-text text-muted">Insert user contract address to be revoke.</small>
+        </div>
+        <h6>Transaction hash revoke::</h6>
+        <div id="txHash-revoke"></div>
+
+        <div id="receipt-revoke--hidden" style = "display:none; color:green">Successfully deleted!</div>
+        <button id="btn_revoke" class="btn btn-primary">Revoke</button>
+      </form>
     </div>
   </div>
+
+
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+<script src="QRCode/qrcode.min.js"></script>
+<script>
+
+  var qrcode_address = new QRCode(document.getElementById('qrcode-address'));
+  //var qrcode_claimId_nric = new QRCode(document.getElementById('qrcode-claimId-nric'));
+
+  var qrcode_claimId_otherClaims = new QRCode(document.getElementById('qrcode-claimId-otherClaims'));
+
+  function generateQR() {
+    var newAddrData = document.getElementById("newAddr").innerHTML;
+    var claimId_nric = document.getElementById("claimId-nric").innerHTML;
+    const objClaims = { claimId_address_obj: newAddrData, claimId_nric_obj: claimId_nric };
+    const myjsonClaim = JSON.stringify(objClaims);
+
+    qrcode_address.makeCode(myjsonClaim);
+    //qrcode_claimId_nric.makeCode(claimId_nric);
+
+    console.log("QR code contract addr:", newAddrData);
+    console.log("QR code Claim ID NRIC: ", claimId_nric);
+
+    displayHidden();
+  }
+  function displayHidden() {
+    var hidden = document.getElementById("otherClaims--hidden");
+    hidden.style.display = "block";
+  }
+  function generateQR_otherClaims() {
+    event.preventDefault();
+    var claimId_name = document.getElementById("claimId-name").innerHTML;
+    var claimId_dob = document.getElementById("claimId-dob").innerHTML;
+    var claimId_gender = document.getElementById("claimId-gender").innerHTML;
+    var claimId_address = document.getElementById("claimId-residence").innerHTML;
+
+    const objClaims = {
+      claimId_name_obj: claimId_name,
+      claimId_dob_obj: claimId_dob,
+      claimId_gender_obj: claimId_gender,
+      claimId_address_obj: claimId_address
+    };
+
+    const myjsonClaim = JSON.stringify(objClaims);
+    qrcode_claimId_otherClaims.makeCode(myjsonClaim);
+
+    console.log("QR code claim other Claim:", myjsonClaim);
+  }
+
+</script>
 
 <!--WEB3JS SCRIPT-->
 <script type="module">
@@ -137,7 +268,7 @@
   import { xKeyHolder } from '../src/abi/xKeyHolder.js';
   //import {xClaimHolderUser} from '../src/abi/xClaimHolderUser.js';
   import { EthereumClaimsRegistry } from '../src/abi/EthereumClaimsRegistry.js';
-  var web3;
+  //var web3;
 
   //KEY AND CLAIM LABELS
   const KEY_PURPOSES = {
@@ -156,13 +287,15 @@
     "DOB": 3,
     "Gender": 4,
     "Address": 5,
-    
+
   };
 
   //CONNECTING GANACHE
 
   if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
+    //web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161'))
+    
   } else {
     //web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:9545")); //original
     web3 = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:9545'));//websocket for events
@@ -174,29 +307,33 @@
 
   //ASYNCHRONOUS FUNCTION
   async function initContractLogic() {
-    var currentAccounts = await web3.eth.getAccounts();
-    const addr1 = document.getElementById("address1").innerHTML = currentAccounts[0]
-    const addr2 = document.getElementById("address2").innerHTML = currentAccounts[1]
-    const addr3 = document.getElementById("address3").innerHTML = currentAccounts[2]
 
+    var holder = "";
+
+    var currentAccounts = await web3.eth.getAccounts();
+    
+    currentAccounts[1] = "0x2Cdfb3E8B3aF15376dDa33fCb266cd369BeaA8A6";
+    
+    const addr1 = document.getElementById("address1").innerHTML = currentAccounts[0];
+    const addr2 = document.getElementById("address2").innerHTML = currentAccounts[1];
     var issuerClaimHolderContract = new web3.eth.Contract(xClaimHolder.abi, xClaimHolder.address);
     var issuerKeyHolderContract = new web3.eth.Contract(xKeyHolder.abi, xKeyHolder.address);
     //var userClaimHolderContract = new web3.eth.Contract(xClaimHolderUser.abi,xClaimHolderUser.address);
     var userClaimContract = new web3.eth.Contract(EthereumClaimsRegistry.abi, EthereumClaimsRegistry.address);
 
     //=====ISSUER KEYS AND CLAIM HOLDER =======
-    console.log("Issuer addr: " + addr1);
-    console.log("Issuer management key(keccak of account[0])" + web3.utils.keccak256(currentAccounts[0]));
+    console.log("--Issuer addr: " + addr1);
+    console.log("--Issuer management key(keccak of account[0])" + web3.utils.keccak256(currentAccounts[0]));
     document.getElementById("imanagementkey").innerHTML = web3.utils.keccak256(currentAccounts[0]);
 
-    console.log("Deploy issuer claim holder...");
+    console.log("--Deploy issuer claim holder...");
     var issuerClaimKey = web3.utils.keccak256(currentAccounts[1]);
 
-    console.log("Issuer Claim Key(keccak of account[1]): " + issuerClaimKey);
-    console.log("Adding a claim key to issuer's ClaimHolder...");
+    console.log("--Issuer Claim Key(keccak of account[1]): " + issuerClaimKey);
+    console.log("--Adding a claim key to issuer's ClaimHolder...");
     document.getElementById("iclaimkey").innerHTML = issuerClaimKey;
 
-    /* //Added issuer claim key keccak of acc[1]===REMOVE FOR SAME ACCOUNT, ONLY RUN IF CLAIMKEY OF ISSUER NOT ADDED.
+    //Added issuer claim key keccak of acc[1]===REMOVE FOR SAME ACCOUNT, ONLY RUN IF CLAIMKEY OF ISSUER NOT ADDED.
     issuerClaimHolderContract.methods.addKey(
       issuerClaimKey,
       KEY_PURPOSES.CLAIM,
@@ -213,10 +350,10 @@
     }).catch(function (error) {
       console.log(error, 'error');
     });
-    */
+    
 
     //===========SIGN USER CLAIM==================
-    console.log("Sign user's claim");
+    console.log("--Sign user's claim");
 
     $("#submit").on('click', async function () {
       event.preventDefault();
@@ -248,27 +385,28 @@
      ) 
        */
       //deploying new instance of contract addCLaimHolder.
-      var signature = await web3.eth.sign(hashedDataToSign, addr2);
-      console.log("Signature: ", signature);
-      document.getElementById("signature").innerHTML = signature;
       console.log("HashedDataToSign: ", hashedDataToSign);
       document.getElementById("hashDataToSign").innerHTML = hashedDataToSign;
+      var signature = await web3.eth.sign(hashedDataToSign, addr1);
+      console.log("Signature: ", signature);
+      document.getElementById("signature").innerHTML = signature;
+
 
       userClaimContract.methods.addClaimHolder().send({
         from: currentAccounts[0],
         gas: 4612388,
       }).on('transactionHash', function (hash) {
-        console.log('hash', hash);
+        console.log('addClaimHolder txhash:', hash);
         //var receipt = web3.eth.getTransactionReceipt(hash).then(console.log);
         //document.getElementById("txhash").innerHTML = hash;
       }).on('confirmation', function (confirmationNumber, receipt) {
         //updateHtmlData();
-        console.log(confirmationNumber);
+        console.log('addClaimHolder confirmationNumber:',confirmationNumber);
       }).catch(function (error) {
         console.log(error, 'error');
+        alert(error);
       });
 
-      var holder = "";
       userClaimContract.events.ClaimHolderAdded(function (error, event) {
         if (error) {
           console.log('Event error: ', error);
@@ -277,7 +415,7 @@
           document.getElementById("newAddr").innerHTML = event.returnValues[0];
           holder = event.returnValues[0];
           console.log('Store new address:', holder)
-          console.log(event);
+          //console.log(event);
 
           //signning user claim
           userClaimContract.methods.addClaim
@@ -285,16 +423,16 @@
               holder,
               CLAIM_TYPES.IC,
               CLAIM_SCHEMES.ECDSA,
-              holder,
+              addr1,
               signature,
               hexedData,
               "http://localhost")
             .call(function (error, result) {
               if (error) {
-                console.log(error, 'error');
+                console.log('addClaim.call error:', error);
               } else {
-                console.log(result, 'result claim id');
-                document.getElementById("claimId").innerHTML = result;
+                console.log('Result addClaim-nric call: ', result);
+                document.getElementById("claimId-nric").innerHTML = result;
               }
             });
 
@@ -302,31 +440,235 @@
             holder,
             CLAIM_TYPES.IC,
             CLAIM_SCHEMES.ECDSA,
-            holder,
+            addr1,
             signature,
             hexedData,
             "http://localhost"
           ).send({
-            from: currentAccounts[1],
+            from: currentAccounts[0],
             gas: 4612388,
           }).on('transactionHash', function (hash) {
-            console.log('Add claim txhash:', hash);
+            console.log('addClaim txhash:', hash);
             //var receipt = web3.eth.getTransactionReceipt(hash).then(console.log);
             //document.getElementById("txhash").innerHTML = hash;
           }).on('confirmation', function (confirmationNumber, receipt) {
-            console.log('Add claim cfm: ', confirmationNumber);
+            //console.log('addClaim cfm: ', confirmationNumber);
           }).catch(function (error) {
-            console.log(error, 'error');
+            console.log('addClaim error:', error);
           });
-
-
         }
       });
-
-
-
-
     });
+
+    $("#btn_sendOtherClaims").on('click', async function () {
+      event.preventDefault();
+
+      //add name
+      var name = document.getElementById("name").value;
+      console.log("name: ", name);
+      var hexedData = web3.utils.asciiToHex(name);
+      var hashedDataToSign = web3.utils.soliditySha3(
+        userClaimContract.options.address,
+        CLAIM_TYPES.Name,
+        hexedData
+      );
+      console.log("HashedDataToSign name: ", hashedDataToSign);
+      var signature = await web3.eth.sign(hashedDataToSign, addr1);
+      console.log("Signature name: ", signature);
+
+      userClaimContract.methods.addClaim
+        (
+          holder,
+          CLAIM_TYPES.Name,
+          CLAIM_SCHEMES.ECDSA,
+          addr1,
+          signature,
+          hexedData,
+          "http://localhost")
+        .call(function (error, result) {
+          if (error) {
+            console.log('addClaim.call error:', error);
+          } else {
+            console.log('Result addClaim-name call: ', result);
+            document.getElementById("claimId-name").innerHTML = result;
+          }
+        });
+
+      userClaimContract.methods.addClaim(
+        holder,
+        CLAIM_TYPES.Name,
+        CLAIM_SCHEMES.ECDSA,
+        addr1,
+        signature,
+        hexedData,
+        "http://localhost"
+      ).send({
+        from: currentAccounts[0],
+        gas: 4612388,
+      }).catch(function (error) {
+        console.log('addClaim error:', error);
+      });
+
+      //add dob
+      var dob = document.getElementById("dob").value;
+      console.log("DOB: ", dob);
+      var hexedData = web3.utils.asciiToHex(dob);
+      var hashedDataToSign = web3.utils.soliditySha3(
+        userClaimContract.options.address,
+        CLAIM_TYPES.DOB,
+        hexedData
+      );
+      console.log("HashedDataToSign dob: ", hashedDataToSign);
+      var signature = await web3.eth.sign(hashedDataToSign, addr1);
+      console.log("Signature dob: ", signature);
+
+      userClaimContract.methods.addClaim
+        (
+          holder,
+          CLAIM_TYPES.DOB,
+          CLAIM_SCHEMES.ECDSA,
+          addr1,
+          signature,
+          hexedData,
+          "http://localhost")
+        .call(function (error, result) {
+          if (error) {
+            console.log('addClaim.call error:', error);
+          } else {
+            console.log('Result addClaim-dob call: ', result);
+            document.getElementById("claimId-dob").innerHTML = result;
+          }
+        });
+
+      userClaimContract.methods.addClaim(
+        holder,
+        CLAIM_TYPES.DOB,
+        CLAIM_SCHEMES.ECDSA,
+        addr1,
+        signature,
+        hexedData,
+        "http://localhost"
+      ).send({
+        from: currentAccounts[0],
+        gas: 4612388,
+      }).catch(function (error) {
+        console.log('addClaim error:', error);
+      });
+
+      //add gender
+
+      var gender = document.getElementById("gender").value;
+      console.log("Gender: ", gender);
+      var hexedData = web3.utils.asciiToHex(gender);
+      var hashedDataToSign = web3.utils.soliditySha3(
+        userClaimContract.options.address,
+        CLAIM_TYPES.Gender,
+        hexedData
+      );
+      console.log("HashedDataToSign gender: ", hashedDataToSign);
+      var signature = await web3.eth.sign(hashedDataToSign, addr1);
+      console.log("Signature gender: ", signature);
+
+      userClaimContract.methods.addClaim
+        (
+          holder,
+          CLAIM_TYPES.Gender,
+          CLAIM_SCHEMES.ECDSA,
+          addr1,
+          signature,
+          hexedData,
+          "http://localhost")
+        .call(function (error, result) {
+          if (error) {
+            console.log('addClaim.call error:', error);
+          } else {
+            console.log('Result addClaim-gender call: ', result);
+            document.getElementById("claimId-gender").innerHTML = result;
+          }
+        });
+
+      userClaimContract.methods.addClaim(
+        holder,
+        CLAIM_TYPES.Gender,
+        CLAIM_SCHEMES.ECDSA,
+        addr1,
+        signature,
+        hexedData,
+        "http://localhost"
+      ).send({
+        from: currentAccounts[0],
+        gas: 4612388,
+      }).catch(function (error) {
+        console.log('addClaim error:', error);
+      });
+
+      //add residence addr
+      var residence = document.getElementById("residence-address").value;
+      console.log("Residence addr: ", residence);
+      var hexedData = web3.utils.asciiToHex(residence);
+      var hashedDataToSign = web3.utils.soliditySha3(
+        userClaimContract.options.address,
+        CLAIM_TYPES.Address,
+        hexedData
+      );
+      console.log("HashedDataToSign residence: ", hashedDataToSign);
+      var signature = await web3.eth.sign(hashedDataToSign, addr1);
+      console.log("Signature residence: ", signature);
+
+      userClaimContract.methods.addClaim
+        (
+          holder,
+          CLAIM_TYPES.Address,
+          CLAIM_SCHEMES.ECDSA,
+          addr1,
+          signature,
+          hexedData,
+          "http://localhost")
+        .call(function (error, result) {
+          if (error) {
+            console.log('addClaim.call error:', error);
+          } else {
+            console.log('Result addClaim-residence call: ', result);
+            document.getElementById("claimId-residence").innerHTML = result;
+          }
+        });
+
+      userClaimContract.methods.addClaim(
+        holder,
+        CLAIM_TYPES.Address,
+        CLAIM_SCHEMES.ECDSA,
+        addr1,
+        signature,
+        hexedData,
+        "http://localhost"
+      ).send({
+        from: currentAccounts[0],
+        gas: 4612388,
+      }).catch(function (error) {
+        console.log('addClaim error:', error);
+      });
+    });
+
+    //REVOKE ADDRESS
+    $("#btn_revoke").on('click', async function () {
+      event.preventDefault();
+      var revokeAddr = document.getElementById("revoke").value;
+      userClaimContract.methods.destroy(
+        revokeAddr,
+      ).send({
+        from: currentAccounts[0],
+        gas: 4612388,
+      }).on('transactionHash', function (hash) {
+        console.log('revoke txhash:', hash);
+        var success = document.getElementById("receipt-revoke--hidden");
+        success.style.display = "block";
+        //var receipt = web3.eth.getTransactionReceipt(hash).then(console.log);
+        document.getElementById("txHash-revoke").innerHTML = hash;
+      }).catch(function (error) {
+        console.log('Revoke', error);
+      });
+    });
+
   }//initcontractlogic();
 
   initContractLogic();

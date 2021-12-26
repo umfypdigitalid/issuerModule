@@ -21,8 +21,15 @@ if (mysqli_connect_error()) {
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $data[] = $row;
     }
-    echo json_encode($data);
+    //echo json_encode($data);
+    //prevent datatable empty error >>
+    if(!empty($data)){
+        echo json_encode($data);
+    }else{
+        echo json_encode(array('data'=>''));
+    }
 
+    
     if (!empty($_POST['feedback'])){
         $feedbackid= $_POST['feedbackid'];
         $reply = ($_POST['feedback']);

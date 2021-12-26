@@ -1,0 +1,32 @@
+
+.content{
+  padding:30px;
+  height: 100%;
+  width: 100%;
+}
+.container {
+  padding-left: 0px;
+  float:left;
+  padding-top: 10px;
+
+}
+#otherClaims--hidden{
+  display:none;
+  padding-top: 9rem;
+ 
+}
+
+.form-group{
+  padding: 5px 0px 5px 0px;
+}
+
+button{
+  width:10rem;
+}
+#otherClaims--hidden > h3{
+  padding:10px 0px 20px 0px;
+}
+
+.qr{
+  display:none;
+}

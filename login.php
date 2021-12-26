@@ -15,7 +15,7 @@ if(mysqli_connect_error()){
     die('Connect Error('.mysqli_connect_errno().')'.mysqli_connect_error());
     $ok = false;
 }else{
-    $sql = "select username from staff where username = '".$username."'  limit 1";
+    $sql = "select username from staff where username = '".$username."' and departmentID='2' limit 1";
 
     $result = mysqli_query($conn, $sql);  
     $count = mysqli_num_rows($result);

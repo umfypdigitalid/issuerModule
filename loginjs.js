@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loginForm.addEventListener("submit", e => {  
         //perfirm AJAX login
-        
+            
             console.log("submit");
   
            var username= $("#username").val();
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
            if (username == ""||password == ""){
             setFormMessage(loginForm,"error","Fill in your username/password");
+            
            }
            else {
                

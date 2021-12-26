@@ -1,6 +1,11 @@
 const EthereumClaimsRegistry = {
   "abi": [
     {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
       "anonymous": false,
       "inputs": [
         {
@@ -12,39 +17,6 @@ const EthereumClaimsRegistry = {
       ],
       "name": "ClaimHolderAdded",
       "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "claimHolder",
-      "outputs": [
-        {
-          "internalType": "contract xClaimHolder",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [],
-      "name": "addClaimHolder",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "contractAddr",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
     },
     {
       "inputs": [
@@ -96,19 +68,46 @@ const EthereumClaimsRegistry = {
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "addClaimHolder",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "contractAddr",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "claimHolder",
+      "outputs": [
+        {
+          "internalType": "contract xClaimHolder",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "address",
           "name": "holder",
           "type": "address"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "_claimId",
-          "type": "bytes32"
         }
       ],
-      "name": "removeClaim",
+      "name": "destroy",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -160,8 +159,26 @@ const EthereumClaimsRegistry = {
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "getClaimHolder",
+      "outputs": [
+        {
+          "internalType": "contract xClaimHolder",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     },
     {
       "inputs": [
@@ -185,31 +202,41 @@ const EthereumClaimsRegistry = {
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "addr",
-          "type": "address"
-        }
-      ],
-      "name": "getClaimHolder",
+      "inputs": [],
+      "name": "owner",
       "outputs": [
         {
-          "internalType": "contract xClaimHolder",
+          "internalType": "address",
           "name": "",
           "type": "address"
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "holder",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_claimId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "removeClaim",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-      address: '0x96FD36fE4bcFB9847e087a9b52Df1Ae99F7379Fc'
+      address: '0x22c80ba069bc904C2aaE80ddd328110ca6E1Bb16'
 
 }
 export {EthereumClaimsRegistry};

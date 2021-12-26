@@ -23,7 +23,7 @@ contract xClaimHolder is xKeyHolder, xERC735 {
         string memory _uri
     )
         public override returns (bytes32 claimRequestId){ //_issuer replace with addNewClaimHolder contract
-        bytes32 claimId = keccak256(abi.encodePacked(_issuer, _claimType));
+        bytes32 claimId = keccak256(abi.encodePacked(address(this), _claimType));
 
         if (msg.sender != address(this)) {
           require(keyHasPurpose(keccak256(abi.encodePacked(msg.sender)), 3), "Sender does not have claim signer key");

@@ -74,6 +74,7 @@
             e.stopPropagation();
             $email = $('#email').val();
             $reason = $('#reason').val();
+            $nric = $('#nric').val();
 
             $.ajax({
                 url: "reportmissing.php",
@@ -82,6 +83,7 @@
                 data: {
                     email: JSON.stringify($email),
                     reason: JSON.stringify($reason),
+                    nric:JSON.stringify($nric),
                 },
                 success: function(response, status, xhr) {
                     $('#prompt').text("Submitted successfully");
@@ -96,6 +98,8 @@
         });
     });
     </script>
+
+    
 </body>
 
 </html>

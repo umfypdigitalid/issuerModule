@@ -31,7 +31,12 @@ if(mysqli_connect_error()){
             
             $data[] = $row;
         }
-    echo json_encode($data);
+    //echo json_encode($data);
+    //prevent empty data table error invalid json response.
+    if(!empty($data)){
+        echo json_encode($data);
+    }else{
+        echo json_encode(array('data'=>''));
     }
-
+    }
 ?>

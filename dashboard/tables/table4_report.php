@@ -8,7 +8,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
@@ -224,7 +224,9 @@
                                             <th>ReportID</th>
                                             <th>Reason</th>
                                             <th>Email</th>
+                                            <th>NRIC</th>
                                             <th>Status</th>
+                                            <th>Address</th>
                                             <th>userID</th>
                                             <th>Revoke</th>
                                         </tr>
@@ -277,7 +279,9 @@
                      {"data":"reportID"},
                     {"data":"reason"},
                     {"data":"email"},
+                    {"data":"nric"},
                     {"data":"status"},
+                    {"data":"image"},
                     {"data":"userID"},
                     {"defaultContent": "<button type='btn_revoke' id='btn_revoke' class='btn-danger btn-xs remove_details'>Revoke</button>"}
                   ],
@@ -305,6 +309,7 @@
 
     });
     </script>
+    
 </body>
 
 </html>

@@ -173,76 +173,6 @@ const xKeyHolder = {
           "internalType": "bytes32",
           "name": "_key",
           "type": "bytes32"
-        }
-      ],
-      "name": "getKey",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "purpose",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "keyType",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "key",
-          "type": "bytes32"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "_key",
-          "type": "bytes32"
-        }
-      ],
-      "name": "getKeyPurpose",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "purpose",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_purpose",
-          "type": "uint256"
-        }
-      ],
-      "name": "getKeysByPurpose",
-      "outputs": [
-        {
-          "internalType": "bytes32[]",
-          "name": "_keys",
-          "type": "bytes32[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "_key",
-          "type": "bytes32"
         },
         {
           "internalType": "uint256",
@@ -327,15 +257,63 @@ const xKeyHolder = {
           "type": "bytes32"
         }
       ],
-      "name": "removeKey",
+      "name": "getKey",
       "outputs": [
         {
-          "internalType": "bool",
-          "name": "success",
-          "type": "bool"
+          "internalType": "uint256",
+          "name": "purpose",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "keyType",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "key",
+          "type": "bytes32"
         }
       ],
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_key",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getKeyPurpose",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "purpose",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_purpose",
+          "type": "uint256"
+        }
+      ],
+      "name": "getKeysByPurpose",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "_keys",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -360,11 +338,29 @@ const xKeyHolder = {
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_key",
+          "type": "bytes32"
+        }
+      ],
+      "name": "removeKey",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  address: '0xC8Ab581A36f50406df8AE29025734c6Be7E5C8fE'
+  address: '0x85FFE6b1231dC562Ff0AAeC4ccAe37560565d3ee'
   
 
 }

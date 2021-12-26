@@ -8,7 +8,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">   
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
@@ -224,19 +224,21 @@
                                     <thead>
                                         <tr>
                                             <th>Created On</th>
+                                            <th>User ID</th>
                                             <th>Fullname</th>
                                             <th>NRIC</th>
                                             <th>Address</th>
                                             <th>Email</th>
-                                            <th>Image</th>
+                                            <!--<th>Contract Address</th>-->
                                       
                                             <th>Status</th>
-
+                                            <th>Verify</th>
+                                            <th>Reject</th>
 
                                         </tr>
                                     </thead>
                                     <tbody id="data">
-                                        <div id="image-placeholder"></div>
+                                        <!--<div id="image-placeholder"></div>-->
 
                                     </tbody>
                                     <tfoot>
@@ -267,9 +269,9 @@
     <script src="../plugins/fastclick/fastclick.min.js"></script>
     <script src="../dist/js/app.min.js"></script>
     <script src="../dist/js/demo.js"></script>
-    <script src=pending.js></script>
+   <!-- <script src=pending.js></script>-->
     <script>
-    $(function() {
+   /* $(function() {
         $("#example1").DataTable({
             "paging": true,
             "lengthChange": false,
@@ -279,7 +281,82 @@
             "autoWidth": false
         });
         $('#example2').DataTable();
+    });*/
+    $(document).ready(function(){        
+            $("#example1").DataTable({
+               // 'processing': true,
+               // 'serverSide': true,
+               // 'serverMethod': 'post',
+                'ajax': {
+                    'url':'pending.php',
+                    'cache': false,
+                    'dataSrc': "",
+                },
+                "columns":[
+                    {"data":"createdon"},
+                    {"data": "userID"},
+                    {"data":"fullname"},
+                    {"data":"nric"},
+                    {"data":"address"},
+                    {"data":"email"},
+                    //{"data": "image"},
+                    {"data":"applicationstatus"},
+                    {"defaultContent": '<button id="btn_verify" class="btn btn-success btn-xs remove_details">Verify</button>'},
+                    {"defaultContent": '<button id="btn_reject" class="btn btn-danger btn-xs remove_details">Reject</button>'},
+                ]
+                                  
+        }); 
     });
+
+    $(document).ready(function() {
+
+    $("#example1 tbody").on("click",'#btn_verify',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        $ic = $(this.closest("tr")).find("td:eq(3)").text();
+        $userid = $(this.closest("tr")).find("td:eq(1)").text();
+        $.ajax({
+          type: "POST",
+          url: "update.php",
+          dataType: "text",
+          data: { ic: JSON.stringify($ic), status: "Verified" , userid : JSON.stringify($userid)},
+          success: function (data, status, xhr) {
+            alert("response was " + data);
+            location.reload();
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr);
+          },
+        });
+      });
+
+
+    $("#example1 tbody").on("click", "#btn_reject", function (e) {
+        alert("click rejected");
+        e.preventDefault();
+        e.stopPropagation();
+
+        $reject = $(this.closest("tr")).find("td:eq(3)").text();
+        $userid = $(this.closest("tr")).find("td:eq(1)").text();
+        $.ajax({
+          type: "POST",
+          url: "update.php",
+          dataType: "text",
+          data: { ic: JSON.stringify($reject), status: "Unverified", userid : JSON.stringify($userid)},
+          success: function (data, status, xhr) {
+            alert("response was " + data);
+            location.reload();
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr);
+          },
+        });
+      });
+
+
+    });
+
     </script>
 </body>
  

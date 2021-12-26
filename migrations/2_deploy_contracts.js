@@ -12,9 +12,9 @@ module.exports =function (deployer) {
   //deployer.deploy(xERC725);
  // deployer.deploy(xERC735);
  // deployer.deploy(xKeyHolder, { gas: 4612388, from: "0xE6FB66aE1b6a51122DbA33b50BB7d95Ae06434C3" });
- // deployer.deploy(xClaimHolder, { gas: 4612388, from: "0xE6FB66aE1b6a51122DbA33b50BB7d95Ae06434C3" });
+  deployer.deploy(xClaimHolder, { gas: 4612388, from: "0xE6FB66aE1b6a51122DbA33b50BB7d95Ae06434C3" });
  //for user deployer.deploy(xClaimHolder, { gas: 4612388, from: "0xe43afB91E36C0F66588896c37795b80B6DCcD526" });
- deployer.deploy(EthereumClaimRegistry, { gas: 6721975, from: "0xe43afB91E36C0F66588896c37795b80B6DCcD526" });
+ deployer.deploy(EthereumClaimRegistry, { gas: 6721975, from: "0xE6FB66aE1b6a51122DbA33b50BB7d95Ae06434C3" });
 //deployer.deploy(smartcontracts,{gas: 4612388, from: "0xfaADc7FD2E161d8DFD5133d2380703ACa9ab83dF" });
 
   //deployer.deploy(xClaimVerifier);

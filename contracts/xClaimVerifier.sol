@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.7.0 <0.9.0;
 
 import './xClaimHolder.sol';
@@ -11,11 +12,36 @@ contract xClaimVerifier {
 
   event ClaimValid(xClaimHolder _identity, uint256 claimType);
   event ClaimInvalid(xClaimHolder _identity, uint256 claimType);
+  event ClaimDataValid(xClaimHolder _identity, uint256 claimType, bytes data);
+  event ClaimDataInvalid(xClaimHolder _identity, uint256 claimType, bytes data);
 
   xClaimHolder public trustedClaimHolder;
 
   constructor (address _trustedClaimHolder) {
     trustedClaimHolder = xClaimHolder(_trustedClaimHolder);
+  }
+
+  function verifyClaimData (xClaimHolder _identity, uint256 _claimType, bytes memory _data) public returns(bool) {
+    if (checkClaim(_identity, _claimType)){
+      uint256 foundClaimType;
+      uint256 scheme;
+      address issuer;
+      bytes memory sig;
+      bytes memory data;
+      string memory uri;
+      bytes32 claimId = keccak256(abi.encodePacked(_identity, _claimType));
+      ( foundClaimType, scheme, issuer, sig, data , uri) = _identity.getClaim(claimId);
+      bytes32 hashData = keccak256(abi.encodePacked(data)); 
+      bool validData = hashData == keccak256(abi.encodePacked(_data));
+      if (validData){
+        emit ClaimDataValid(_identity, _claimType, _data);
+        return true;
+      } else {
+        emit ClaimDataInvalid(_identity, _claimType, _data);
+        return false;
+      }
+    }
+    return false;
   }
 
   function checkClaim(xClaimHolder _identity, uint256 claimType)
@@ -43,7 +69,7 @@ contract xClaimVerifier {
     bytes memory data;
 
     // Construct claimId (identifier + claim type)
-    bytes32 claimId = keccak256(abi.encodePacked(trustedClaimHolder, claimType));
+    bytes32 claimId = keccak256(abi.encodePacked(address(_identity), claimType));
 
     // Fetch claim from user
     ( foundClaimType, scheme, issuer, sig, data, ) = _identity.getClaim(claimId);

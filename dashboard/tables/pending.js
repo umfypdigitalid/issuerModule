@@ -4,7 +4,7 @@ var method = "GET";
 var url = "pending.php";
 var asynchronous = true;
 
-ajax.open(method, url, asynchronous);
+ajax.open(method,url, asynchronous);
 ajax.send();
 ajax.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
@@ -18,15 +18,6 @@ ajax.onreadystatechange = function () {
     function buildTable(data) {
       var table = document.getElementById("data");
       for (var i = 0; i < data.length; i++) {
-        /*  var row = `<tr>
-							<td>${data[i].createdon}</td>
-							<td>${data[i].fullname}</td>
-							<td>${data[i].nric}</td>
-              <td>${data[i].birthdate}</td>
-              <td>${data[i].address}</td>
-              <td>${data[i].email}</td>
-              <td>${data[i].applicationstatus}</td>
-					  </tr>`;*/
         var row =
           "<tr>" +
           "<td>" +
@@ -45,9 +36,9 @@ ajax.onreadystatechange = function () {
           data[i].email +
           "</td>" +
           "<td>" +
-          "<img src=" +
+         // "<img src=" +
           data[i].image +
-          " width = '200' height = '100'" +
+          //" width = '200' height = '100'" +
           "</td>" +
         
           "<td>" +
@@ -69,12 +60,14 @@ ajax.onreadystatechange = function () {
      $("#image-placeholder").toggle();
     });
   });*/
+
+  
     $(document).ready(function () {
       //$('#example1').DataTable();
       $("#btn_verify").on("click", function (e) {
         alert("clicked verify");
         e.preventDefault();
-        e.stopPropagation();
+        //e.stopPropagation();
 
         var $ic = $(this.closest("tr")).find("td:eq(2)").text();
         $.ajax({
@@ -95,7 +88,7 @@ ajax.onreadystatechange = function () {
       $("#btn_reject").on("click", function (e) {
         alert("click rejected");
         e.preventDefault();
-        e.stopPropagation();
+        //e.stopPropagation();
 
         var $reject = $(this.closest("tr")).find("td:eq(2)").text();
 
