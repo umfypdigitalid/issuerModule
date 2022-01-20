@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <!-- custom css -->
     <link rel="stylesheet" type="text/css" href="style_UI_missing.css">
-
+    <link rel="stylesheet" href="../style.css">
     <!-- bootstrap link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -18,7 +18,30 @@
 </head>
 
 <body class="m-body">
-
+<nav class="navbar">
+        <div class="navbar__container">
+            <img src="../assets/gov_logo.png" class="govLogo" alt="Gov logo">
+            <a href="#home" id="navbar__logo">OneDigitalID</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span> <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="#home" class="navbar__links" id="home-page">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#about" class="navbar__links" id="about-page">About</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#services" class="navbar__links" id="services-page">Services</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="login2.html" class="button" id="login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="row">
         <div class="col-md-5 m-left-col py-4 py-md-5">
             <img class="m-img-logo" src="assets/image-missing.jpg" alt="Registration"> <br>
