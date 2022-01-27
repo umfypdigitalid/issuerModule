@@ -75,6 +75,9 @@
                         <label id = "fail" style="display:none; color:red">Failed!</label>
                 
                     </div>
+                    <div class="form-group">
+                        <h6 id="prompt"  style = "color:rgb(21, 180, 21)"></h6>
+                    </div>
                     <button id="submit" class="btn btn-primary">Submit</button>
                 </form>
                 <br>
@@ -89,9 +92,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <h6 id="prompt"></h6>
-    </div>
+   
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -126,10 +127,11 @@
 
                 },
                 success: function (response, status, xhr) {
-                    $('#prompt').text("Submitted successfully");
+                    
                     alert("Your complaint/feedback ID is: " + response);
                     $("#success").css("display","block")
                     $("#fail").css("display","none");
+                    $('#prompt').html("Your complaint/feedback ID is: " + response);
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr);

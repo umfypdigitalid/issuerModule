@@ -33,7 +33,7 @@ if (mysqli_connect_error()) {
     if (!empty($_POST['feedback'])){
         $feedbackid= $_POST['feedbackid'];
         $reply = ($_POST['feedback']);
-        $sql3 = "UPDATE feedback set reply=$reply,status=true where feedbackid=$feedbackid ";
+        $sql3 = "UPDATE feedback set reply=$reply, status=true where feedbackid=$feedbackid ";
         $result3 = mysqli_query($conn, $sql3);
        if($result3==true){
             echo $sql3;

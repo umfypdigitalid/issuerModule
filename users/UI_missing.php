@@ -28,16 +28,16 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="#home" class="navbar__links" id="home-page">Home</a>
+                    <a href="../index.html" class="navbar__links" id="home-page">Home</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="#about" class="navbar__links" id="about-page">About</a>
+                    <a href="../index.html" class="navbar__links" id="about-page">About</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="#services" class="navbar__links" id="services-page">Services</a>
+                    <a href="../index.html" class="navbar__links" id="services-page">Services</a>
                 </li>
                 <li class="navbar__btn">
-                    <a href="login2.html" class="button" id="login">Login</a>
+                    <a href="../login2.html" class="button" id="login">Login</a>
                 </li>
             </ul>
         </div>

@@ -315,15 +315,17 @@
               
         });
         $('#example5 tbody').on('click','#btn_reply',function(e){
-            var text = $('#myInput').val();
-             $stringtext = JSON.stringify(text);
-             $feedbackid = $(this.closest("tr")).find("td:eq(0)").text();
-
-            alert($stringtext);
+           // var text = $('#myInput').val();
+           var text = $(this.closest("tr")).find("td:eq(5) input[type='textbox'] ").val();
+        
+            var stringtext = JSON.stringify(text);
+            var feedbackid = $(this.closest("tr")).find("td:eq(0)").text();
+           
+            alert(text);
             $.ajax({
                 url:'complaint.php',
                 method:'post',
-                data: {feedback:$stringtext, feedbackid:JSON.stringify($feedbackid)},
+                data: {feedback: JSON.stringify(stringtext), feedbackid:JSON.stringify(feedbackid)},
             success: function (response, status, xhr) {
             console.log("response was " + response);
             //location.reload();
@@ -344,7 +346,7 @@
                 },
            
                 "columns":[
-                     {"data":"feedbackID"},
+                    {"data":"feedbackID"},
                     {"data":"email"},
                     {"data":"fullname"},
                     {"data":"comment"},

@@ -114,7 +114,8 @@
       </div>
     </div>
     <!--Display QR code-->
-    <div class="container" id="qrDiv">
+    <!--  TEMPORARY 
+      <div class="container" id="qrDiv">
       <button id="qr-data" class="btn btn-primary" onclick="generateQR()">Generate QR code</button>
       <br>
       <br>
@@ -132,60 +133,83 @@
           <p id="qrcode-claimId-nric"></p>
         </div>
       </div>
-
+    -->
 
       <!--Add other claims to same contract address-->
+      <br>
+      <br>
+      <hr class="divider">
       <div id="otherClaims--hidden">
         <hr class="divider">
         <h3>Verify and sign other claims</h3>
         <form>
+          <!--NAME-->
           <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>
-            <div class="col-sm-8">
+            <div class="col-sm-6">
               <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="col-sm-4">
+              <button id="btn_sendOtherClaims" class="btn btn-primary">Sign name</button>
             </div>
             <div id="claimId-name"></div>
 
-
+<!--DOB-->
           </div>
           <div class="form-group row">
             <label for="dob" class="col-sm-2 col-form-label">Date of birth</label>
-            <div class="col-sm-8">
+            <div class="col-sm-6">
               <input type="date" class="form-control" id="dob" placeholder="Date of birth">
             </div>
+            <div class="col-sm-4">
+              <button id="btn_dob" class="btn btn-primary">Sign dob</button>
+            </div>
             <div id="claimId-dob"></div>
+<!--Gender-->
           </div>
           <div class="form-group row">
             <label for="gender" class="col-sm-2 col-form-label">Gender</label>
-            <div class="col-sm-8">
+            <div class="col-sm-6">
               <input type="text" class="form-control" id="gender" placeholder="Male/Female">
+            </div>
+            <div class="col-sm-4">
+              <button id="btn_gender" class="btn btn-primary">Sign gender</button>
             </div>
             <div id="claimId-gender"></div>
           </div>
 
-
+<!--residence-->
           <div class="form-group row">
             <label for="residence-address" class="col-sm-2 col-form-label">Residence Address</label>
-            <div class="col-sm-8">
+            <div class="col-sm-6">
               <input type="text" class="form-control" id="residence-address" placeholder="Residence Address">
             </div>
+            <div class="col-sm-4">
+              <button id="btn_residence" class="btn btn-primary">Sign address</button>
+            </div>
             <div id="claimId-residence"></div>
-            <div id="qrcode-claimId-otherClaims"></div>
+          
           </div>
+         
           <div class="form-group row">
             <div class="col-sm">
+              <br>
               <button id="btn_generateQR_otherClaims" onclick="generateQR_otherClaims()"
                 class="btn btn-primary">Generate QR</button>
             </div>
-            <div class="col-sm">
-              <button id="btn_sendOtherClaims" class="btn btn-primary">Sign address</button>
-            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="qrcode-claimId-otherClaims"></div>
           </div>
 
         </form>
       </div>
-    </div>
+   <!--</div>--> 
     <!--REVOKE USERS-->
+    <br>
+    <br>
     <div class="container">
       <hr class="divider">
       <h3>Revoke verifiable credentials</h3>
@@ -196,11 +220,15 @@
             placeholder="Contract address to be revoked">
           <small id="contract address" class="form-text text-muted">Insert user contract address to be revoke.</small>
         </div>
-        <h6>Transaction hash revoke::</h6>
+        <h6>Transaction hash revoke:</h6>
         <div id="txHash-revoke"></div>
 
-        <div id="receipt-revoke--hidden" style = "display:none; color:green">Successfully deleted!</div>
+        <div id="receipt-revoke--hidden" style="display:none; color:green">Successfully deleted!</div>
         <button id="btn_revoke" class="btn btn-primary">Revoke</button>
+        <br>
+        <br>
+        <br>
+        <br>
       </form>
     </div>
   </div>
@@ -216,8 +244,8 @@
 <script src="QRCode/qrcode.min.js"></script>
 <script>
 
-  var qrcode_address = new QRCode(document.getElementById('qrcode-address'));
-  //var qrcode_claimId_nric = new QRCode(document.getElementById('qrcode-claimId-nric'));
+  //var qrcode_address = new QRCode(document.getElementById('qrcode-address'));
+  
 
   var qrcode_claimId_otherClaims = new QRCode(document.getElementById('qrcode-claimId-otherClaims'));
 
@@ -246,11 +274,17 @@
     var claimId_gender = document.getElementById("claimId-gender").innerHTML;
     var claimId_address = document.getElementById("claimId-residence").innerHTML;
 
+    var newAddrData = document.getElementById("newAddr").innerHTML;
+    var claimId_nric = document.getElementById("claimId-nric").innerHTML;
+
     const objClaims = {
+      claimId_contractAddress_obj: newAddrData, 
+      claimId_nric_obj: claimId_nric,
       claimId_name_obj: claimId_name,
       claimId_dob_obj: claimId_dob,
       claimId_gender_obj: claimId_gender,
       claimId_address_obj: claimId_address
+    
     };
 
     const myjsonClaim = JSON.stringify(objClaims);
@@ -295,7 +329,7 @@
   if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
     //web3 = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161'))
-    
+
   } else {
     //web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:9545")); //original
     web3 = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:9545'));//websocket for events
@@ -311,9 +345,9 @@
     var holder = "";
 
     var currentAccounts = await web3.eth.getAccounts();
-    
+    currentAccounts[0] = "0xdDD9ec425B6ab02fF18f83d98D4f85E8758b9b5f";
     currentAccounts[1] = "0x2Cdfb3E8B3aF15376dDa33fCb266cd369BeaA8A6";
-    
+
     const addr1 = document.getElementById("address1").innerHTML = currentAccounts[0];
     const addr2 = document.getElementById("address2").innerHTML = currentAccounts[1];
     var issuerClaimHolderContract = new web3.eth.Contract(xClaimHolder.abi, xClaimHolder.address);
@@ -334,7 +368,7 @@
     document.getElementById("iclaimkey").innerHTML = issuerClaimKey;
 
     //Added issuer claim key keccak of acc[1]===REMOVE FOR SAME ACCOUNT, ONLY RUN IF CLAIMKEY OF ISSUER NOT ADDED.
-    issuerClaimHolderContract.methods.addKey(
+    /*issuerClaimHolderContract.methods.addKey(
       issuerClaimKey,
       KEY_PURPOSES.CLAIM,
       KEY_TYPES.ECDSA
@@ -350,7 +384,7 @@
     }).catch(function (error) {
       console.log(error, 'error');
     });
-    
+    */
 
     //===========SIGN USER CLAIM==================
     console.log("--Sign user's claim");
@@ -401,7 +435,7 @@
         //document.getElementById("txhash").innerHTML = hash;
       }).on('confirmation', function (confirmationNumber, receipt) {
         //updateHtmlData();
-        console.log('addClaimHolder confirmationNumber:',confirmationNumber);
+        console.log('addClaimHolder confirmationNumber:', confirmationNumber);
       }).catch(function (error) {
         console.log(error, 'error');
         alert(error);
@@ -508,8 +542,11 @@
       }).catch(function (error) {
         console.log('addClaim error:', error);
       });
+    });
 
-      //add dob
+    //add dob
+    $("#btn_dob").on('click', async function () {
+      event.preventDefault();
       var dob = document.getElementById("dob").value;
       console.log("DOB: ", dob);
       var hexedData = web3.utils.asciiToHex(dob);
@@ -554,101 +591,107 @@
       }).catch(function (error) {
         console.log('addClaim error:', error);
       });
-
-      //add gender
-
-      var gender = document.getElementById("gender").value;
-      console.log("Gender: ", gender);
-      var hexedData = web3.utils.asciiToHex(gender);
-      var hashedDataToSign = web3.utils.soliditySha3(
-        userClaimContract.options.address,
-        CLAIM_TYPES.Gender,
-        hexedData
-      );
-      console.log("HashedDataToSign gender: ", hashedDataToSign);
-      var signature = await web3.eth.sign(hashedDataToSign, addr1);
-      console.log("Signature gender: ", signature);
-
-      userClaimContract.methods.addClaim
-        (
-          holder,
-          CLAIM_TYPES.Gender,
-          CLAIM_SCHEMES.ECDSA,
-          addr1,
-          signature,
-          hexedData,
-          "http://localhost")
-        .call(function (error, result) {
-          if (error) {
-            console.log('addClaim.call error:', error);
-          } else {
-            console.log('Result addClaim-gender call: ', result);
-            document.getElementById("claimId-gender").innerHTML = result;
-          }
-        });
-
-      userClaimContract.methods.addClaim(
-        holder,
-        CLAIM_TYPES.Gender,
-        CLAIM_SCHEMES.ECDSA,
-        addr1,
-        signature,
-        hexedData,
-        "http://localhost"
-      ).send({
-        from: currentAccounts[0],
-        gas: 4612388,
-      }).catch(function (error) {
-        console.log('addClaim error:', error);
-      });
-
-      //add residence addr
-      var residence = document.getElementById("residence-address").value;
-      console.log("Residence addr: ", residence);
-      var hexedData = web3.utils.asciiToHex(residence);
-      var hashedDataToSign = web3.utils.soliditySha3(
-        userClaimContract.options.address,
-        CLAIM_TYPES.Address,
-        hexedData
-      );
-      console.log("HashedDataToSign residence: ", hashedDataToSign);
-      var signature = await web3.eth.sign(hashedDataToSign, addr1);
-      console.log("Signature residence: ", signature);
-
-      userClaimContract.methods.addClaim
-        (
-          holder,
-          CLAIM_TYPES.Address,
-          CLAIM_SCHEMES.ECDSA,
-          addr1,
-          signature,
-          hexedData,
-          "http://localhost")
-        .call(function (error, result) {
-          if (error) {
-            console.log('addClaim.call error:', error);
-          } else {
-            console.log('Result addClaim-residence call: ', result);
-            document.getElementById("claimId-residence").innerHTML = result;
-          }
-        });
-
-      userClaimContract.methods.addClaim(
-        holder,
-        CLAIM_TYPES.Address,
-        CLAIM_SCHEMES.ECDSA,
-        addr1,
-        signature,
-        hexedData,
-        "http://localhost"
-      ).send({
-        from: currentAccounts[0],
-        gas: 4612388,
-      }).catch(function (error) {
-        console.log('addClaim error:', error);
-      });
     });
 
+    //add gender
+    $("#btn_gender").on('click', async function () {
+      event.preventDefault();
+    var gender = document.getElementById("gender").value;
+    console.log("Gender: ", gender);
+    var hexedData = web3.utils.asciiToHex(gender);
+    var hashedDataToSign = web3.utils.soliditySha3(
+      userClaimContract.options.address,
+      CLAIM_TYPES.Gender,
+      hexedData
+    );
+    console.log("HashedDataToSign gender: ", hashedDataToSign);
+    var signature = await web3.eth.sign(hashedDataToSign, addr1);
+    console.log("Signature gender: ", signature);
+
+    userClaimContract.methods.addClaim
+      (
+        holder,
+        CLAIM_TYPES.Gender,
+        CLAIM_SCHEMES.ECDSA,
+        addr1,
+        signature,
+        hexedData,
+        "http://localhost")
+      .call(function (error, result) {
+        if (error) {
+          console.log('addClaim.call error:', error);
+        } else {
+          console.log('Result addClaim-gender call: ', result);
+          document.getElementById("claimId-gender").innerHTML = result;
+        }
+      });
+
+    userClaimContract.methods.addClaim(
+      holder,
+      CLAIM_TYPES.Gender,
+      CLAIM_SCHEMES.ECDSA,
+      addr1,
+      signature,
+      hexedData,
+      "http://localhost"
+    ).send({
+      from: currentAccounts[0],
+      gas: 4612388,
+    }).catch(function (error) {
+      console.log('addClaim error:', error);
+    });
+  });
+
+    //add residence addr
+    $("#btn_residence").on('click', async function () {
+      event.preventDefault();
+    var residence = document.getElementById("residence-address").value;
+    console.log("Residence addr: ", residence);
+    var hexedData = web3.utils.asciiToHex(residence);
+    var hashedDataToSign = web3.utils.soliditySha3(
+      userClaimContract.options.address,
+      CLAIM_TYPES.Address,
+      hexedData
+    );
+    console.log("HashedDataToSign residence: ", hashedDataToSign);
+    var signature = await web3.eth.sign(hashedDataToSign, addr1);
+    console.log("Signature residence: ", signature);
+
+    userClaimContract.methods.addClaim
+      (
+        holder,
+        CLAIM_TYPES.Address,
+        CLAIM_SCHEMES.ECDSA,
+        addr1,
+        signature,
+        hexedData,
+        "http://localhost")
+      .call(function (error, result) {
+        if (error) {
+          console.log('addClaim.call error:', error);
+        } else {
+          console.log('Result addClaim-residence call: ', result);
+          document.getElementById("claimId-residence").innerHTML = result;
+        }
+      });
+
+    userClaimContract.methods.addClaim(
+      holder,
+      CLAIM_TYPES.Address,
+      CLAIM_SCHEMES.ECDSA,
+      addr1,
+      signature,
+      hexedData,
+      "http://localhost"
+    ).send({
+      from: currentAccounts[0],
+      gas: 4612388,
+    }).catch(function (error) {
+      console.log('addClaim error:', error);
+    });
+
+    //});
+  });
     //REVOKE ADDRESS
     $("#btn_revoke").on('click', async function () {
       event.preventDefault();
@@ -666,6 +709,7 @@
         document.getElementById("txHash-revoke").innerHTML = hash;
       }).catch(function (error) {
         console.log('Revoke', error);
+        alert("Contract address not found", error);
       });
     });
 
