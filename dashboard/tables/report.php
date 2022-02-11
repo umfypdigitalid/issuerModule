@@ -16,7 +16,7 @@ if (mysqli_connect_error()) {
     $result2 = mysqli_query($conn, $sql2);
 
 
-    $sql = "select * from report r inner join userapplication u where r.userID = u.userID";
+    $sql = "select * from report r inner join userapplication u where r.userID = u.userID and status ='Pending' ";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $data[] = $row;
@@ -39,13 +39,21 @@ if (mysqli_connect_error()) {
         $result3 = mysqli_query($conn, $sql3);
         if($result3==true){
             echo "Revoked successfully";
-            $sql4 = "delete from report where userID='$userid'";
+            /*$sql4 = "delete from report where userID='$userid'";
             $result4 = mysqli_query($conn, $sql4);
             if($result4==true){
                 echo "Delete from report";
             }
             else{
                 echo "fail to delete report";
+            }*/
+            $sql4 = "update report set status = 'Completed' where userID='$userid'";
+            $result4 = mysqli_query($conn, $sql4);
+            if($result4==true){
+                echo "Updated report successfully";
+            }
+            else{
+                echo "Fail to update report";
             }
         }
         else{

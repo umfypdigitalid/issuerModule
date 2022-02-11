@@ -182,8 +182,8 @@
                     </li>
 
                     <li>
-                        <a href="pages/mailbox/mailbox.html">
-                            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                        <a href="../../src/verify.html">
+                            <i class="fa fa-envelope"></i> <span>Blockchain</span>
                             <small class="label pull-right bg-yellow">12</small>
                         </a>
                     </li>
@@ -387,6 +387,7 @@
                 $("#exampleModal").modal();
                 $("#save-changes").click(function() {
                     var contractAddr = document.getElementById("contract-address").value;
+                    if(contractAddr.length == 42){
                     $.ajax({
                         type: "POST",
                         url: "updateAddr.php",
@@ -403,6 +404,9 @@
                             console.error(xhr);
                         },
                     });
+                }else{
+                    alert("Invalid contract address")
+                }
                 });
             });
 

@@ -55,11 +55,11 @@
 
                     <!--username-->
                     <div class="mb-3">
-                        <input type="text" class="m-input m-input-blue" id="email" placeholder="Email" name="email">
+                        <input type="email" class="m-input m-input-blue" id="email" placeholder="Email" name="email">
                         <small class="m-error">*Please fill out this field.</small>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="m-input m-input-blue" id="nric" placeholder="NRIC" name="nric">
+                        <input type="number" class="m-input m-input-blue" id="nric" placeholder="NRIC" name="nric">
                         <small class="m-error">*Please fill out this field.</small>
                     </div>
 
@@ -98,7 +98,9 @@
             $email = $('#email').val();
             $reason = $('#reason').val();
             $nric = $('#nric').val();
+            $pattern =  /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
 
+            if($nric.toString().length == 12 && $pattern.test($email)){
             $.ajax({
                 url: "reportmissing.php",
                 type: "POST",
@@ -117,7 +119,9 @@
                     console.error(xhr);
                 },
             });
-
+        }else{
+            alert("Invalid NRIC/not a valid email");
+        }
         });
     });
     </script>

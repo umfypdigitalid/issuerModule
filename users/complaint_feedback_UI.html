@@ -114,7 +114,7 @@
                 $("#fail").css("display","block");
                 $("#fail").html("Invalid email!");
             }else{
-
+            if($type != 'Types:'){
             $.ajax({
                 url: "complaint_feedback.php",
                 type: "POST",
@@ -129,16 +129,20 @@
                 success: function (response, status, xhr) {
                     
                     alert("Your complaint/feedback ID is: " + response);
-                    $("#success").css("display","block")
+                    $("#success").css("display","block");
                     $("#fail").css("display","none");
                     $('#prompt').html("Your complaint/feedback ID is: " + response);
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr);
-                    $("#fail").css("display","block")
+                    $("#fail").css("display","block");
+                    $("#success").css("display","none");
 
                 },
             });
+            }else{
+                alert("Incorrect types chosen!");
+            }
         }
         });
 

@@ -249,15 +249,7 @@
         } else if ($type == "Report") {
             $("#report").css("display", "block")
             for (var i = 0; i < data.length; i++) {
-                var status2 = "";
-                var reply2 = "";
-                if (data[i].status == 0) {
-                    status2 = "Uncompleted";
-                } else {
-                    status2 = "Completed";
-                }
-
-
+               
                 var row =
                     "<tr>" +
                     "<td>" +
@@ -270,7 +262,7 @@
                     data[i].reason +
                     "</td>" +
                     "<td>" +
-                    status2 +
+                    data[i].status +
                     "</td>" +
                     "<td>" +
                     data[i].nric +

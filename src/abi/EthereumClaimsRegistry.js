@@ -236,7 +236,7 @@ const EthereumClaimsRegistry = {
       "type": "function"
     }
   ],
-      address: '0x22c80ba069bc904C2aaE80ddd328110ca6E1Bb16'
+      address: '0x4597967964C85a52a0366F45412e05aC7Bba7cde'
 
 }
 export {EthereumClaimsRegistry};

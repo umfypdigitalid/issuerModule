@@ -14,7 +14,7 @@ contract EthereumClaimsRegistry {
     }
 
     function addClaimHolder() public returns (address contractAddr) {
-        require(msg.sender == owner, "You are not the owner");
+        //require(msg.sender == owner, "You are not the owner");
         xClaimHolder holder = new xClaimHolder();
         contractAddr = address(holder);
         claimHolder[contractAddr] = holder;

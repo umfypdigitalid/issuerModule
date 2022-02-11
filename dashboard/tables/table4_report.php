@@ -186,8 +186,8 @@
                     </li>
 
                     <li>
-                        <a href="pages/mailbox/mailbox.html">
-                            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                        <a href="../src/verify.html">
+                            <i class="fa fa-envelope"></i> <span>Blockchain</span>
                             <small class="label pull-right bg-yellow">12</small>
                         </a>
                     </li>
@@ -298,10 +298,12 @@
           data: {revoke: stringdata},
           success: function (response, status, xhr) {
            console.log("response was " + response);
+           alert("Successfully revoked");
            location.reload();
           },
           error: function (xhr, status, error) {
             console.error(xhr);
+            alert("Failed to revoked");
           },
         });
         });

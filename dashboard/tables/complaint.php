@@ -36,7 +36,7 @@ if (mysqli_connect_error()) {
         $sql3 = "UPDATE feedback set reply=$reply, status=true where feedbackid=$feedbackid ";
         $result3 = mysqli_query($conn, $sql3);
        if($result3==true){
-            echo $sql3;
+            echo "Replied successfully";
        }
        else{
             echo "failed";

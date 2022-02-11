@@ -187,8 +187,8 @@
                     </li>
 
                     <li>
-                        <a href="pages/mailbox/mailbox.html">
-                            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                        <a href="../src/verify.html">
+                            <i class="fa fa-envelope"></i> <span>Blockchain</span>
                             <small class="label pull-right bg-yellow">12</small>
                         </a>
                     </li>
@@ -320,22 +320,26 @@
         
             var stringtext = JSON.stringify(text);
             var feedbackid = $(this.closest("tr")).find("td:eq(0)").text();
-           
-            alert(text);
+          
+            //alert(text);
+            if(stringtext.length > 2){
             $.ajax({
                 url:'complaint.php',
                 method:'post',
-                data: {feedback: JSON.stringify(stringtext), feedbackid:JSON.stringify(feedbackid)},
+                data: {feedback: stringtext, feedbackid:feedbackid},
             success: function (response, status, xhr) {
             console.log("response was " + response);
-            //location.reload();
+            alert("Successfully replied");
+            location.reload();
             },
             error: function (xhr, status, error) {
                 console.error(xhr);
             },
              
             });
-
+            }else{
+                alert("Invalid reply");
+            }
         });
 
         var table2 = $("#example6").DataTable({
@@ -353,10 +357,7 @@
                     {"data":"userID"},
               ],
               
-        });
-     
-     
-        
+        });       
        
     });
     </script>
